@@ -1,0 +1,10 @@
+.nav {
+	background-color: #03032c;
+	&.nav-pills li {
+		padding: 2rem;
+		color: white;
+		a {
+			color: white;
+		}
+	}
+}
