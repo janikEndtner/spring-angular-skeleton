@@ -1,17 +1,13 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import com.example.demo.model.LoginRequest;
 import com.example.demo.model.LoginResponse;
 import com.example.demo.model.Role;
 import com.example.demo.model.UserPrincipal;
 import com.example.demo.security.JwtIssuer;
-import com.example.demo.security.UserPricipalAuthenticationToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
