@@ -1,15 +1,12 @@
 package com.example.demo.security;
 
-import java.util.Collection;
-
-import com.example.demo.model.UserPricipal;
+import com.example.demo.model.UserPrincipal;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 
 public class UserPricipalAuthenticationToken extends AbstractAuthenticationToken {
 
-	private final UserPricipal principal;
-	public UserPricipalAuthenticationToken(UserPricipal principal) {
+	private final UserPrincipal principal;
+	public UserPricipalAuthenticationToken(UserPrincipal principal) {
 		super(principal.getAuthorities());
 		this.principal = principal;
 		setAuthenticated(true);

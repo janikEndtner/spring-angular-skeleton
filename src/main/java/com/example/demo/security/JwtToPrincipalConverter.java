@@ -2,17 +2,15 @@ package com.example.demo.security;
 
 import java.util.List;
 
-import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.example.demo.model.UserPricipal;
-import org.apache.catalina.User;
+import com.example.demo.model.UserPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JwtToPrincipalConverter {
-	public UserPricipal convert(DecodedJWT jwt) {
-		return UserPricipal.builder()
+	public UserPrincipal convert(DecodedJWT jwt) {
+		return UserPrincipal.builder()
 				.userId(Long.parseLong(jwt.getSubject()))
 				.email(jwt.getClaim("email").asString())
 				.authorities(extractAuthoritiesFromClaim(jwt))

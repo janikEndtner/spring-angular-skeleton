@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.UserPrincipal;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +15,8 @@ public class GreetingController {
 	}
 
 	@GetMapping("/api/secured")
-	public String secured() {
-		return "logged in";
+	public String secured(@AuthenticationPrincipal UserPrincipal pricipal) {
+		return "logged in as " + pricipal.getEmail() + " User ID: "
+				+ pricipal.getUserId();
 	}
 }
