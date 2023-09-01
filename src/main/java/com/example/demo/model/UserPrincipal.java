@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.io.Serial;
 import java.util.Collection;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Builder
 public class UserPrincipal implements UserDetails {
 
+	@Serial
+	private static final long serialVersionUID = -4503185238917521894L;
 	private final long userId;
 	private final String email;
 	@JsonIgnore

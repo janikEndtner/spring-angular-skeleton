@@ -2,8 +2,6 @@ package com.example.demo.service;
 
 import java.util.Optional;
 
-import javax.swing.text.html.Option;
-
 import com.example.demo.entity.UserEntity;
 import com.example.demo.model.Role;
 import org.springframework.stereotype.Service;
