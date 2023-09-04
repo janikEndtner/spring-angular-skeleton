@@ -19,4 +19,9 @@ public class GreetingController {
 		return "logged in as " + pricipal.getEmail() + " User ID: "
 				+ pricipal.getUserId();
 	}
+
+	@GetMapping("/api/admin")
+	public String admin(@AuthenticationPrincipal UserPrincipal principal) {
+		return "if you see this, you are an admin " + principal.getUserId();
+	}
 }

@@ -4,6 +4,8 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -20,7 +22,7 @@ public class JwtIssuer {
 				.withSubject(String.valueOf(userId))
 				.withExpiresAt(Instant.now().plus(Duration.of(1, ChronoUnit.DAYS)))
 				.withClaim("email", email)
-				.withClaim("roles", roles.toString())
+				.withClaim("roles", roles.stream().map(Objects::toString).collect(Collectors.toList()))
 				.sign(Algorithm.HMAC256(properties.getSecretKey()));
 	}
 }

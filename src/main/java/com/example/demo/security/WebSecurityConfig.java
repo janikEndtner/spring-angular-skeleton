@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.example.demo.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +32,7 @@ public class WebSecurityConfig {
 				.authorizeHttpRequests(registry -> {
 					registry
 							.requestMatchers("/api/auth/login").permitAll()
+							.requestMatchers("/api/admin/**").hasRole(Role.ADMIN.toString())
 							.anyRequest().authenticated();
 				});
 
