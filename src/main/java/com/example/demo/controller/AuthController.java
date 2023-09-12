@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.LoginRequest;
-import com.example.demo.model.LoginResponse;
+import com.example.demo.model.SessionInformation;
 import com.example.demo.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -16,7 +16,7 @@ public class AuthController {
 	private final AuthService authService;
 
 	@PostMapping("/api/auth/login")
-	public LoginResponse login(@RequestBody @Validated LoginRequest request) {
+	public SessionInformation login(@RequestBody @Validated LoginRequest request) {
 		return authService.attemptLogin(request.getEmail(), request.getPassword());
 	}
 }

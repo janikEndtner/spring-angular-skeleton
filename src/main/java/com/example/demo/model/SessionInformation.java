@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class LoginResponse {
-	private final String accessToken;
+public class SessionInformation {
+	private String expiresAt;
+	private String idToken;
 }

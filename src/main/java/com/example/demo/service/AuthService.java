@@ -1,7 +1,11 @@
 package com.example.demo.service;
 
-import com.example.demo.model.LoginResponse;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+
 import com.example.demo.model.Role;
+import com.example.demo.model.SessionInformation;
 import com.example.demo.model.UserPrincipal;
 import com.example.demo.security.JwtIssuer;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +21,7 @@ public class AuthService {
 	private final JwtIssuer jwtIssuer;
 	private final AuthenticationManager authenticationManager;
 
-	public LoginResponse attemptLogin(String email, String password) {
+	public SessionInformation attemptLogin(String email, String password) {
 		var authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(email, password)
 		);
@@ -26,9 +30,11 @@ public class AuthService {
 		var roles = principal.getAuthorities().stream()
 				.map(grantedAuthority -> Role.valueOf(grantedAuthority.getAuthority()))
 				.toList();
-		var token = jwtIssuer.issue(principal.getUserId(), principal.getEmail(), roles);
-		return LoginResponse.builder()
-				.accessToken(token)
+		var expiresAt = Instant.now().plus(Duration.of(1, ChronoUnit.DAYS));
+		var token = jwtIssuer.issue(principal.getUserId(), principal.getEmail(), roles, expiresAt);
+		return SessionInformation.builder()
+				.idToken(token)
+				.expiresAt(String.valueOf(expiresAt))
 				.build();
 	}
 }
