@@ -1,14 +1,14 @@
 package com.example.demo.entity;
 
-import com.example.demo.model.Role;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @RequiredArgsConstructor
-public class UserEntity {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +30,6 @@ public class UserEntity {
 	@Column(nullable = false)
 	private String password;
 
-	@Column(nullable = false)
-	@Enumerated(EnumType.STRING)
-	private Role role;
+	@OneToMany(mappedBy = "user")
+	private Set<UserRole> roles;
 }

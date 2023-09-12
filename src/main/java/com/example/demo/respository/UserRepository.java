@@ -1,9 +1,9 @@
 package com.example.demo.respository;
 
-import com.example.demo.entity.UserEntity;
+import com.example.demo.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.lang.NonNull;
 
-public interface UserRepository extends CrudRepository<UserEntity, Long> {
-	UserEntity findByEmail(@NonNull String email);
+public interface UserRepository extends CrudRepository<User, Long> {
+	User findByEmail(@NonNull String email);
 }

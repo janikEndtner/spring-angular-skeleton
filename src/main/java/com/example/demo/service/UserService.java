@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import java.util.Optional;
 
-import com.example.demo.entity.UserEntity;
+import com.example.demo.entity.User;
 import com.example.demo.respository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
 	private final UserRepository userRepository;
-	public Optional<UserEntity> findByEmail(String email) {
+	public Optional<User> findByEmail(String email) {
 		return Optional.ofNullable(userRepository.findByEmail(email));
 	}
 }
