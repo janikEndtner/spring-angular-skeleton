@@ -33,7 +33,8 @@ public class WebSecurityConfig {
 					registry
 							.requestMatchers("/api/auth/login").permitAll()
 							.requestMatchers("/api/admin/**").hasRole(Role.ADMIN.toString())
-							.anyRequest().authenticated();
+							.requestMatchers("/api/**").authenticated()
+							.requestMatchers("/**").permitAll();
 				});
 
 		return http.build();
