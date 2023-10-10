@@ -8,10 +8,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.XorCsrfTokenRequestAttributeHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -21,13 +24,13 @@ public class WebSecurityConfig {
 	private final CustomUserDetailService customUserDetailService;
 	@Bean
 	public SecurityFilterChain applicationSecurity(HttpSecurity http) throws Exception {
+
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
+		configureCsrf(http);
+
 		http
-				// TODO: enable csrf and cors
-				.csrf().disable()
-				.cors().disable()
-				.formLogin().disable()
+				.formLogin(AbstractHttpConfigurer::disable)
 				.securityMatcher("/**")
 				.authorizeHttpRequests(registry -> {
 					registry
@@ -38,6 +41,16 @@ public class WebSecurityConfig {
 				});
 
 		return http.build();
+	}
+
+	private void configureCsrf(HttpSecurity http) throws Exception {
+		CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+		XorCsrfTokenRequestAttributeHandler delegate = new XorCsrfTokenRequestAttributeHandler();
+
+		http.csrf(csrf -> csrf
+				.csrfTokenRepository(tokenRepository)
+				.csrfTokenRequestHandler(delegate::handle)
+		);
 	}
 
 	@Bean
