@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   private setSession(authResult: TSSessionInformation) {
-    const expiresAt = moment().add(authResult.expiresAt,'second');
+    const expiresAt = moment(authResult.expiresAt);
 
     localStorage.setItem(this.ID_TOKEN, authResult.idToken);
     localStorage.setItem(this.EXPIRES_AT, JSON.stringify(expiresAt.valueOf()) );
@@ -37,6 +37,9 @@ export class AuthService {
   }
 
   public isLoggedIn() {
+    if (!this.getExpiration()) {
+      return false;
+    }
     return moment().isBefore(this.getExpiration());
   }
 
@@ -44,10 +47,10 @@ export class AuthService {
     return !this.isLoggedIn();
   }
 
-  private getExpiration() {
+  private getExpiration(): moment.Moment | undefined {
     const expiration = localStorage.getItem(this.EXPIRES_AT);
     if (!expiration) {
-      throw Error('expires_at not found');
+      return undefined;
     }
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
