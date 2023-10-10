@@ -19,4 +19,12 @@ export class AppComponent {
         return this.auth.isLoggedIn();
     }
 
+    public logout(): void {
+        return this.auth.logout();
+    }
+
+    public isAdmin(): boolean {
+        // TODO: implement admin functionality
+        return true;
+    }
 }
