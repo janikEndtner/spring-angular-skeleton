@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.example.demo.filter.JwtAuthenticationFilter;
 import com.example.demo.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -32,13 +33,11 @@ public class WebSecurityConfig {
 		http
 				.formLogin(AbstractHttpConfigurer::disable)
 				.securityMatcher("/**")
-				.authorizeHttpRequests(registry -> {
-					registry
-							.requestMatchers("/api/auth/login").permitAll()
-							.requestMatchers("/api/admin/**").hasRole(Role.ADMIN.toString())
-							.requestMatchers("/api/**").authenticated()
-							.requestMatchers("/**").permitAll();
-				});
+				.authorizeHttpRequests(registry -> registry
+						.requestMatchers("/api/auth/login").permitAll()
+						.requestMatchers("/api/admin/**").hasRole(Role.ADMIN.toString())
+						.requestMatchers("/api/**").authenticated()
+						.requestMatchers("/**").permitAll());
 
 		return http.build();
 	}

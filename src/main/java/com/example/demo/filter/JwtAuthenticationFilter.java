@@ -1,15 +1,17 @@
-package com.example.demo.security;
+package com.example.demo.filter;
 
 import java.io.IOException;
 import java.util.Optional;
 
-import javax.swing.text.html.Option;
-
+import com.example.demo.security.JwtDecoder;
+import com.example.demo.security.JwtToPrincipalConverter;
+import com.example.demo.security.UserPricipalAuthenticationToken;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -22,7 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	private final JwtDecoder jwtDecoder;
 	private final JwtToPrincipalConverter jwtToPrincipalConverter;
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+	protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		extractTokenFromRequest(request)
 				.map(jwtDecoder::decode)
