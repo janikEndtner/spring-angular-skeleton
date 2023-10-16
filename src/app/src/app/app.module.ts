@@ -9,7 +9,10 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AuthModule} from './auth/auth.module';
+import {ErrorComponent} from './error/error.component';
+import {ErrorService} from './error/error.service';
 import {HomeComponent} from './home/home.component';
+import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {JwtTokenInterceptor} from './interceptors/jwt-token.interceptor';
 import {XhrInterceptor} from './interceptors/xhr.interceptor';
 
@@ -22,6 +25,7 @@ const routes: Routes = [
     declarations: [
         AppComponent,
         HomeComponent,
+        ErrorComponent,
     ],
     imports: [
         BrowserModule,
@@ -40,6 +44,8 @@ const routes: Routes = [
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+        ErrorService,
     ],
     bootstrap: [AppComponent],
 })

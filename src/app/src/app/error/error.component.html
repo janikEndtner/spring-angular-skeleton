@@ -1,0 +1,3 @@
+<div *ngIf="(errors$ | async)?.length" class="alert alert-danger" role="alert">
+	<span *ngFor="let e of (errors$ |async)">{{e.message}}</span>
+</div>
