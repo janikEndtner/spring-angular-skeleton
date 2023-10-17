@@ -17,4 +17,9 @@ export class ErrorService {
     public get errors$(): Observable<RuntimeError[]> {
         return this._errors.asObservable();
     }
+
+    public removeError(errToRemove: RuntimeError): void {
+        const newList = [...this._errors.value];
+        this._errors.next(newList.filter(err => err != errToRemove));
+    }
 }

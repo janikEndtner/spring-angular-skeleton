@@ -21,4 +21,7 @@ export class ErrorComponent implements OnInit {
     public ngOnInit(): void {
     }
 
+    public removeMessage(e: RuntimeError): void {
+        this.errorService.removeError(e);
+    }
 }
