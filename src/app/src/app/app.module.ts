@@ -15,6 +15,7 @@ import {HomeComponent} from './home/home.component';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {JwtTokenInterceptor} from './interceptors/jwt-token.interceptor';
 import {XhrInterceptor} from './interceptors/xhr.interceptor';
+import {NavbarComponent} from './navbar/navbar.component';
 import {UserService} from './shared/user.service';
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
         AppComponent,
         HomeComponent,
         ErrorComponent,
+        NavbarComponent,
     ],
     imports: [
         BrowserModule,

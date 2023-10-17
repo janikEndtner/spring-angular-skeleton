@@ -1,31 +1,5 @@
 <header>
-	<div class="navbar navbar-dark bg-dark shadow-sm">
-		<div class="container">
-			<span>
-				<ul class="nav nav-pills">
-					<li><a routerLinkActive="active" routerLink="/home">Home</a></li>
-				</ul>
-			</span>
-			<span>
-				<a routerLink="/login">
-					<button type="button" class="btn btn-primary" *ngIf="!(user$ | async)">Login</button>
-				</a>
-				<div *ngIf="!!(user$ | async)" ngbDropdown class="d-inline-block">
-					<button type="button" class="btn btn-primary" id="userDropdown" ngbDropdownToggle>
-						<i class="bi bi-list"></i>
-						Menu
-					</button>
-					<div ngbDropdownMenu aria-labelledby="userDropdown">
-						<ng-container  *ngIf="isAdmin$() | async">
-							<a ngbDropdownItem class="dropdown-item" href="#">Users</a>
-							<div class="dropdown-divider"></div>
-						</ng-container>
-						<a ngbDropdownItem class="dropdown-item" (click)="logout()" href="#">Logout</a>
-					</div>
-				</div>
-			</span>
-		</div>
-	</div>
+	<app-navbar></app-navbar>
 	<app-error></app-error>
 </header>
 <main>
