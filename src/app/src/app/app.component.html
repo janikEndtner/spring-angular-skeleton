@@ -8,9 +8,9 @@
 			</span>
 			<span>
 				<a routerLink="/login">
-					<button type="button" class="btn btn-primary" *ngIf="!isLoggedIn()">Login</button>
+					<button type="button" class="btn btn-primary" *ngIf="!(user$ | async)">Login</button>
 				</a>
-				<div *ngIf="isLoggedIn()" ngbDropdown class="d-inline-block">
+				<div *ngIf="!!(user$ | async)" ngbDropdown class="d-inline-block">
 					<button type="button" class="btn btn-primary" id="userDropdown" ngbDropdownToggle>
 						<i class="bi bi-list"></i>
 						Menu

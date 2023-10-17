@@ -12,9 +12,9 @@ export class AuthService {
   private readonly ID_TOKEN = 'id_token';
   private readonly EXPIRES_AT = 'expires_at';
 
-  public constructor(private http: HttpClient) {
-
-  }
+  public constructor(
+          private http: HttpClient
+  ) {}
 
   public login(email:string, password:string ) {
     return this.http.post<TSSessionInformation>('/api/auth/login', {email, password})
@@ -31,7 +31,7 @@ export class AuthService {
     localStorage.setItem(this.EXPIRES_AT, JSON.stringify(expiresAt.valueOf()) );
   }
 
-  public logout() {
+  public logout(): void {
     localStorage.removeItem(this.ID_TOKEN);
     localStorage.removeItem(this.EXPIRES_AT);
   }

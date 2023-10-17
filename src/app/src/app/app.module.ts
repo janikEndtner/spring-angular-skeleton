@@ -15,6 +15,7 @@ import {HomeComponent} from './home/home.component';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {JwtTokenInterceptor} from './interceptors/jwt-token.interceptor';
 import {XhrInterceptor} from './interceptors/xhr.interceptor';
+import {UserService} from './shared/user.service';
 
 const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -46,6 +47,7 @@ const routes: Routes = [
         {provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
         ErrorService,
+        UserService,
     ],
     bootstrap: [AppComponent],
 })
