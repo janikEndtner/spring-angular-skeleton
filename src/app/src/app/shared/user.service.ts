@@ -1,8 +1,9 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable, ReplaySubject} from 'rxjs';
+import {map, Observable, ReplaySubject} from 'rxjs';
 import {AuthService} from '../auth/auth.service';
-import {TSUser} from '../models/TSCredentials';
+import {TSUser} from '../models/TSUser';
+import {RestUtil} from '../utils/RestUtil';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +23,8 @@ export class UserService {
         if (!this.authService.isLoggedIn()) {
             return;
         }
-        this.http.get<TSUser>('/api/user/current')
+        this.http.get('/api/user/current')
+                .pipe(map(rest => RestUtil.restToUser(rest)))
                 .subscribe(u => this._user.next(u));
     }
 

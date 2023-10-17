@@ -13,6 +13,8 @@ public class MapperService {
 	private final ModelMapper modelMapper = new ModelMapper();
 
 	public UserDTO userToDTO(@NonNull User user) {
-		return modelMapper.map(user, UserDTO.class);
+		var userDTO = modelMapper.map(user, UserDTO.class);
+		userDTO.setUserRoleDTOs(user.getRoles());
+		return userDTO;
 	}
 }

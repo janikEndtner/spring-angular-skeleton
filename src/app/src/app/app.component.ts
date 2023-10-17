@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Observable, tap} from 'rxjs';
+import {map, Observable, tap} from 'rxjs';
 import {AuthService} from './auth/auth.service';
-import {TSUser} from './models/TSCredentials';
+import {TSRole} from './models/TSRole';
+import {TSUser} from './models/TSUser';
 import {UserService} from './shared/user.service';
 
 @Component({
@@ -29,8 +30,7 @@ export class AppComponent implements OnInit {
         return this.auth.logout();
     }
 
-    public isAdmin(): boolean {
-        // TODO: implement admin functionality
-        return true;
+    public isAdmin$(): Observable<boolean> {
+        return this.user$.pipe(map(u => u.roles.includes(TSRole.ADMIN)));
     }
 }

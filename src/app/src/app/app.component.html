@@ -16,8 +16,10 @@
 						Menu
 					</button>
 					<div ngbDropdownMenu aria-labelledby="userDropdown">
-						<a *ngIf="isAdmin()" ngbDropdownItem class="dropdown-item" href="#">Users</a>
-						<div class="dropdown-divider"></div>
+						<ng-container  *ngIf="isAdmin$() | async">
+							<a ngbDropdownItem class="dropdown-item" href="#">Users</a>
+							<div class="dropdown-divider"></div>
+						</ng-container>
 						<a ngbDropdownItem class="dropdown-item" (click)="logout()" href="#">Logout</a>
 					</div>
 				</div>
