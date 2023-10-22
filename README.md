@@ -6,14 +6,12 @@ It integrates following concepts:
 - JWT token authentication
 - Flyway database migration
 - building and running with docker
+- nginx to redirect routes either to angular or to spring
 
 ## How to run for development
 1. start database on port 3307
 2. start front end
 3. start back end
 
-## How to install for deployment with docker
-1. build front end: `ng build --prod in web folder`
-2. build back end: `mvn install`
-3. create docker image from Dockerfile: `docker build -t spring-angular-skeleton:spring-angular-skeleton . ` 
-4. run with docker-compose: `docker-compose up`
+## How to build for deployment with docker
+1. run .sh script `sh build.sh`

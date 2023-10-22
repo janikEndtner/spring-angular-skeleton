@@ -9,8 +9,8 @@ services: # defining service/s
       - 3307:3306
     networks:
       - network_1
-  app:
-    image: spring-angular-skeleton
+  backend:
+    image: spring-backend
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mariadb://db:3306/spring_demo # overwrite configuration from application.properties file
     build: .
@@ -20,5 +20,12 @@ services: # defining service/s
       - db
     networks:
       - network_1
+  nginx:
+    image: nginx-with-angular
+    ports:
+      - 80:80
+    networks:
+      - network_1
+
 networks:
   network_1:
