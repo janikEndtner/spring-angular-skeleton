@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.stream.StreamSupport;
 
 import com.example.demo.dto.MapperService;
 import com.example.demo.dto.UserDTO;
@@ -21,6 +23,13 @@ public class UserController {
 		var username = principal.getName();
 		var user = userService.findByEmail(username).orElseThrow();
 		return mapperService.userToDTO(user);
+	}
+
+	@GetMapping("/user/all")
+	public List<UserDTO> getAllUsers() {
+		return StreamSupport.stream(userService.findAll().spliterator(), false)
+				.map(mapperService::userToDTO)
+				.toList();
 	}
 
 

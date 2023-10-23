@@ -32,4 +32,9 @@ export class UserService {
     public get user$(): Observable<TSUser> {
         return this._user.asObservable();
     }
+
+    public getAllUsers$(): Observable<TSUser[]> {
+        return this.http.get(this.BASE_PATH + 'all')
+                .pipe(map(rest => RestUtil.restToUsers(rest)))
+    }
 }

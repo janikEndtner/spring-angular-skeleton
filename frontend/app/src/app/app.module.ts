@@ -9,9 +9,9 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AuthModule} from './auth/auth.module';
+import {HomeComponent} from './components/home/home.component';
 import {ErrorComponent} from './error/error.component';
 import {ErrorService} from './error/error.service';
-import {HomeComponent} from './home/home.component';
 import {BasePathInterceptor} from './interceptors/basePath.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {JwtTokenInterceptor} from './interceptors/jwt-token.interceptor';
@@ -22,6 +22,7 @@ import {UserService} from './shared/user.service';
 const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'home'},
     {path: 'home', component: HomeComponent},
+    {path: 'user-list', loadChildren: () => import('./components/user-list/user-list.module').then(m => m.UserListModule)}
 ];
 
 @NgModule({
@@ -29,7 +30,7 @@ const routes: Routes = [
         AppComponent,
         HomeComponent,
         ErrorComponent,
-        NavbarComponent,
+        NavbarComponent
     ],
     imports: [
         BrowserModule,

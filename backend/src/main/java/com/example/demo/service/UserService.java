@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.entity.User;
@@ -14,5 +15,9 @@ public class UserService {
 	private final UserRepository userRepository;
 	public Optional<User> findByEmail(String email) {
 		return Optional.ofNullable(userRepository.findByEmail(email));
+	}
+
+	public Iterable<User> findAll() {
+		return userRepository.findAll();
 	}
 }
