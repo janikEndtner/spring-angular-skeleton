@@ -11,13 +11,14 @@ export class AuthService {
 
   private readonly ID_TOKEN = 'id_token';
   private readonly EXPIRES_AT = 'expires_at';
+  private readonly BASE_PATH = 'auth/'
 
   public constructor(
           private http: HttpClient
   ) {}
 
   public login(email:string, password:string ) {
-    return this.http.post<TSSessionInformation>('/api/auth/login', {email, password})
+    return this.http.post<TSSessionInformation>( this.BASE_PATH + 'login', {email, password})
             .pipe(
                     tap(res => this.setSession(res)),
                     shareReplay()

@@ -12,6 +12,7 @@ import {AuthModule} from './auth/auth.module';
 import {ErrorComponent} from './error/error.component';
 import {ErrorService} from './error/error.service';
 import {HomeComponent} from './home/home.component';
+import {BasePathInterceptor} from './interceptors/basePath.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {JwtTokenInterceptor} from './interceptors/jwt-token.interceptor';
 import {XhrInterceptor} from './interceptors/xhr.interceptor';
@@ -48,6 +49,7 @@ const routes: Routes = [
         {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: BasePathInterceptor, multi: true},
         ErrorService,
         UserService,
     ],

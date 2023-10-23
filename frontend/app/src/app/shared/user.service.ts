@@ -11,6 +11,7 @@ import {RestUtil} from '../utils/RestUtil';
 export class UserService {
 
     private _user = new ReplaySubject<TSUser>(1);
+    private readonly BASE_PATH = 'user/';
 
     constructor(
             private readonly http: HttpClient,
@@ -23,7 +24,7 @@ export class UserService {
         if (!this.authService.isLoggedIn()) {
             return;
         }
-        this.http.get('/api/user/current')
+        this.http.get(this.BASE_PATH + 'current')
                 .pipe(map(rest => RestUtil.restToUser(rest)))
                 .subscribe(u => this._user.next(u));
     }

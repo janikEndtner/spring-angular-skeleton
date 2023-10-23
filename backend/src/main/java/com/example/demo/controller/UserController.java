@@ -16,7 +16,7 @@ public class UserController {
 	private final UserService userService;
 	private final MapperService mapperService;
 
-	@GetMapping("/api/user/current")
+	@GetMapping("/user/current")
 	public UserDTO getCurrentUser(Principal principal) {
 		var username = principal.getName();
 		var user = userService.findByEmail(username).orElseThrow();

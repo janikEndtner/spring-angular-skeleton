@@ -13,6 +13,7 @@ services: # defining service/s
     image: spring-backend
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mariadb://db:3306/spring_demo # overwrite configuration from application.properties file
+      - SPRING_SERVLET_CONTEXT_PATH=/api
     build: .
     ports:
       - 8080:8080

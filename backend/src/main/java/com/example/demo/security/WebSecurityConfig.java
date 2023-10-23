@@ -44,6 +44,7 @@ public class WebSecurityConfig {
 
 	private void configureCsrf(HttpSecurity http) throws Exception {
 		CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+		tokenRepository.setCookiePath("/"); // because we have /api as base path
 		XorCsrfTokenRequestAttributeHandler delegate = new XorCsrfTokenRequestAttributeHandler();
 
 		http.csrf(csrf -> csrf
