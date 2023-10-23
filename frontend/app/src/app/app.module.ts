@@ -36,10 +36,6 @@ const routes: Routes = [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        HttpClientXsrfModule.withOptions({
-            cookieName: 'XSRF-TOKEN',
-            headerName: 'X-XSRF-TOKEN'
-        }),
         NgbModule,
         RouterModule.forRoot(routes),
         StoreModule.forRoot({}, {}),

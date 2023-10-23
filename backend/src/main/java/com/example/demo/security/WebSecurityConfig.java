@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -28,7 +30,8 @@ public class WebSecurityConfig {
 
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-		configureCsrf(http);
+		// we can disable csrf, since we are using JWT authentication
+		http.csrf(AbstractHttpConfigurer::disable);
 
 		http
 				.formLogin(AbstractHttpConfigurer::disable)
@@ -40,17 +43,6 @@ public class WebSecurityConfig {
 						.requestMatchers("/**").permitAll());
 
 		return http.build();
-	}
-
-	private void configureCsrf(HttpSecurity http) throws Exception {
-		CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
-		tokenRepository.setCookiePath("/"); // because we have /api as base path
-		XorCsrfTokenRequestAttributeHandler delegate = new XorCsrfTokenRequestAttributeHandler();
-
-		http.csrf(csrf -> csrf
-				.csrfTokenRepository(tokenRepository)
-				.csrfTokenRequestHandler(delegate::handle)
-		);
 	}
 
 	@Bean
