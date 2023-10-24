@@ -11,7 +11,7 @@ import {RestUtil} from '../utils/RestUtil';
 export class UserService {
 
     private _user = new ReplaySubject<TSUser>(1);
-    private readonly BASE_PATH = 'user/';
+    private readonly BASE_PATH = 'users/';
 
     constructor(
             private readonly http: HttpClient,
@@ -34,7 +34,7 @@ export class UserService {
     }
 
     public getAllUsers$(): Observable<TSUser[]> {
-        return this.http.get(this.BASE_PATH + 'all')
+        return this.http.get(this.BASE_PATH)
                 .pipe(map(rest => RestUtil.restToUsers(rest)))
     }
 }
