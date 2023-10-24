@@ -21,6 +21,7 @@ import org.springframework.security.web.csrf.XorCsrfTokenRequestAttributeHandler
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;

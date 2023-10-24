@@ -6,6 +6,7 @@ import java.util.stream.StreamSupport;
 
 import com.example.demo.dto.MapperService;
 import com.example.demo.dto.UserDTO;
+import com.example.demo.helpers.IsAdmin;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class UserController {
 	}
 
 	@GetMapping("/user/all")
+	@IsAdmin
 	public List<UserDTO> getAllUsers() {
 		return StreamSupport.stream(userService.findAll().spliterator(), false)
 				.map(mapperService::userToDTO)
