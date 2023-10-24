@@ -1,14 +1,20 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class JwtTokenInterceptor implements HttpInterceptor {
 
+    constructor(
+            private readonly authService: AuthService
+    ) {
+    }
+
     intercept(req: HttpRequest<any>,
               next: HttpHandler): Observable<HttpEvent<any>> {
 
-        const idToken = localStorage.getItem("id_token");
+        const idToken = this.authService.getToken();
 
         if (idToken) {
             const cloned = req.clone({

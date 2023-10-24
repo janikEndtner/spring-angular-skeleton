@@ -56,4 +56,16 @@ export class AuthService {
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
   }
+
+  public getExpiresIn(): number {
+    const expAt = this.getExpiration();
+    if (!expAt) {
+      throw new Error("expires in is undefined");
+    }
+    return expAt.diff(moment());
+  }
+
+  public getToken(): string | null {
+    return localStorage.getItem(this.ID_TOKEN);
+  }
 }
