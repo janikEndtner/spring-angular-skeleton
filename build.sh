@@ -7,7 +7,7 @@ docker build -t nginx-with-angular .
 popd
 #build backend
 pushd backend/
-batch mvnw.cmd install
+batch mvnw.cmd clean install -DskipTests
 docker build -t spring-backend .
 popd
 
