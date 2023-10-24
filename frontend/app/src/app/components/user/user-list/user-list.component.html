@@ -9,12 +9,17 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr *ngFor="let user of (allUsers$ | async); index as i">
+			<tr *ngFor="let user of (allUsers$ | async); index as i" [routerLink]="['edit', user.id]" class="pointer">
 				<td>{{ user.id }}</td>
 				<td>{{ user.email }}</td>
 				<td>{{ user.roles.join(', ') }}</td>
 			</tr>
 			</tbody>
 		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<button type="button" class="btn btn-primary" [routerLink]="'add'">User hinzufügen</button>
 	</div>
 </div>

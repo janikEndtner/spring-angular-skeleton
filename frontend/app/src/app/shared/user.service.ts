@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {map, Observable, ReplaySubject} from 'rxjs';
 import {AuthService} from '../auth/auth.service';
@@ -36,5 +36,10 @@ export class UserService {
     public getAllUsers$(): Observable<TSUser[]> {
         return this.http.get(this.BASE_PATH)
                 .pipe(map(rest => RestUtil.restToUsers(rest)))
+    }
+
+    public getUserById$(id: number): Observable<TSUser> {
+        return this.http.get(this.BASE_PATH + id)
+                .pipe(map(rest => RestUtil.restToUser(rest)))
     }
 }

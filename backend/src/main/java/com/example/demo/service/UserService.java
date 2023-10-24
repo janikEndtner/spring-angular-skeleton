@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.example.demo.entity.User;
 import com.example.demo.respository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,5 +20,13 @@ public class UserService {
 
 	public Iterable<User> findAll() {
 		return userRepository.findAll();
+	}
+
+	public User addOrUpdateUser(User user) {
+		return userRepository.save(user);
+	}
+
+	public Optional<User> findById(@NonNull long id) {
+		return userRepository.findById(id);
 	}
 }

@@ -1,0 +1,7 @@
+<div class="row">
+	<div class="col-xs-12" *ngIf="(user$ | async) as user">
+		<p>{{user.id}}</p>
+		<p>{{user.roles}}</p>
+		<p>{{user.email}}</p>
+	</div>
+</div>

@@ -18,11 +18,12 @@ import {JwtTokenInterceptor} from './interceptors/jwt-token.interceptor';
 import {XhrInterceptor} from './interceptors/xhr.interceptor';
 import {NavbarComponent} from './navbar/navbar.component';
 import {UserService} from './shared/user.service';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'home'},
     {path: 'home', component: HomeComponent},
-    {path: 'user-list', loadChildren: () => import('./components/user-list/user-list.module').then(m => m.UserListModule)}
+    {path: 'users', loadChildren: () => import('./components/user/user.module').then(m => m.UserModule)}
 ];
 
 @NgModule({
