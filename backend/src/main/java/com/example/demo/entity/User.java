@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -17,6 +19,8 @@ import lombok.Setter;
 @Setter
 @Entity
 @RequiredArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
 
 	@Id
