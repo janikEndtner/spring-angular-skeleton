@@ -1,0 +1,13 @@
+<div class="form-group">
+	<label for="idref">{{modelName}}</label>
+	<input type="text" class="form-control" id="idref"
+		   [required]="required"
+		   [(ngModel)]="model" name="model"
+           #ctrlName="ngModel"
+		   (ngModelChange)="inputChanged()"
+	>
+	<div [hidden]="ctrlName.valid || ctrlName.pristine"
+		 class="alert alert-danger">
+		{{modelName}} is required
+	</div>
+</div>

@@ -17,13 +17,13 @@ import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {JwtTokenInterceptor} from './interceptors/jwt-token.interceptor';
 import {XhrInterceptor} from './interceptors/xhr.interceptor';
 import {NavbarComponent} from './navbar/navbar.component';
+import {SharedModule} from './shared/shared.module';
 import {UserService} from './shared/user.service';
-import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'home'},
     {path: 'home', component: HomeComponent},
-    {path: 'users', loadChildren: () => import('./components/user/user.module').then(m => m.UserModule)}
+    {path: 'users', loadChildren: () => import('./components/user/user.module').then(m => m.UserModule)},
 ];
 
 @NgModule({
@@ -31,7 +31,7 @@ const routes: Routes = [
         AppComponent,
         HomeComponent,
         ErrorComponent,
-        NavbarComponent
+        NavbarComponent,
     ],
     imports: [
         BrowserModule,
@@ -40,8 +40,9 @@ const routes: Routes = [
         NgbModule,
         RouterModule.forRoot(routes),
         StoreModule.forRoot({}, {}),
-        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
         AuthModule.forRoot(),
+        SharedModule,
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},

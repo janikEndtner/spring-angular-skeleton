@@ -1,8 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {UserDetailsComponent} from '../user-details/user-details.component';
+import {SharedModule} from '../../shared/shared.module';
+import {UserDetailsComponent} from './user-details/user-details.component';
 import {UserListComponent} from './user-list/user-list.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 const routes: Routes = [
     {
@@ -23,11 +25,13 @@ const routes: Routes = [
     declarations: [
         UserListComponent,
         UserDetailsComponent,
+        UserFormComponent,
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-    ]
+        SharedModule,
+    ],
 })
 export class UserModule {
 }

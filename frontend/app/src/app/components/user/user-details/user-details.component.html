@@ -1,0 +1,13 @@
+<ng-container *ngIf="(user$ | async) as user">
+	<div class="row mt-2">
+		<div class="col-xs-12">
+			<h1>User {{user.email}}</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<app-user-form [user]="user"></app-user-form>
+		</div>
+	</div>
+</ng-container>
+

@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, of, Subject, switchMap, takeUntil} from 'rxjs';
-import {TSUser} from '../../models/TSUser';
-import {UserService} from '../../shared/user.service';
+import {TSUser} from '../../../models/TSUser';
+import {UserService} from '../../../shared/user.service';
 
 @Component({
     selector: 'app-user-details',

@@ -1,0 +1,7 @@
+<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+	<app-form-group
+			[(model)]="user.email"
+			[modelName]="'E-Mail'"
+			[required]="true">
+	</app-form-group>
+</form>
