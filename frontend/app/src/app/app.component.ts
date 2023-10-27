@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
 
     public ngOnInit(): void {
         if (this.authService.isLoggedOut()) {
+            // in this case token expired while application was not running. we have to
+            // delete token before login
+            this.authService.logout();
             this.router.navigate(['/login']);
             return;
         }
