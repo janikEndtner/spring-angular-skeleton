@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {filter, of, Subscription, switchMap, timer} from 'rxjs';
-import {AppRoutingModule} from './app-routing.module';
 import {AuthService} from './auth/auth.service';
 
 @Component({
@@ -33,7 +32,7 @@ export class AppComponent implements OnInit {
                         filter(t => !!t),
                         switchMap(t => timer(t - 1000)) // subtract one second to be sure, user is redirected early enough
                 )
-                .subscribe(expired => {
+                .subscribe(() => {
                     this.router.navigate(['/login']);
                 });
     }

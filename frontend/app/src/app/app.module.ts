@@ -1,8 +1,7 @@
-import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {isDevMode, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule, Routes} from '@angular/router';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
@@ -37,7 +36,6 @@ const routes: Routes = [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        NgbModule,
         RouterModule.forRoot(routes),
         StoreModule.forRoot({}, {}),
         StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),

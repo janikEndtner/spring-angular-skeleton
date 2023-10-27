@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
+import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from '../../shared/shared.module';
 import {UserDetailsComponent} from './user-details/user-details.component';
 import {UserListComponent} from './user-list/user-list.component';
@@ -32,6 +33,9 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         SharedModule,
     ],
+    providers: [
+        NgbDropdownConfig
+    ]
 })
 export class UserModule {
 }
